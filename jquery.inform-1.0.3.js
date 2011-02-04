@@ -19,13 +19,13 @@
 			// Tip: you probably don't want to change this.
 		edit: null, // function($field, isFieldEdited, isFormEdited) 
 			// called by the change function. Tip: maybe you want to set this. 
-		errorMessage: null, // A function($form, xhr, status, err), string, or null.
+		errorMessage: null, // A function(xhr, status, err), string, or null.
 			// Used to display a dialog to the user after a form submission error.
 		errorTitle: 'Error', // jquery-ui dialog title on error.
 		reset: resetForm, // Function to call to reset the form.
 		submit: submitForm, // Function to call to submit the form.
 			// Tip: the 'ajax' option is probably all you need.
-		successMessage: null, // A function($form, data), string, or null.
+		successMessage: null, // A function(data), string, or null.
 			// Used to display a dialog to the user after submitting the form.
 		successTitle: 'Success', // jquery-ui dialog title on success.
 		wrapEvents: true, // Wrap jquery.ajax success and error functions.
@@ -239,7 +239,7 @@
 		if (!settings.successMessage)
 			return data;
 		if ($.isFunction(settings.successMessage))
-			return settings.successMessage.apply(this, [xhr, status, err]);
+			return settings.successMessage.apply($form, [data]);
 		return settings.successMessage;
 	}
 	
@@ -249,7 +249,7 @@
 		if (!settings.errorMessage)
 			return 'Error! ' + err;
 		if ($.isFunction(settings.errorMessage))
-			return settings.errorMessage.apply(this, [xhr, status, err]);
+			return settings.errorMessage.apply($form, [xhr, status, err]);
 		return settings.errorMessage;
 	}	
 	
