@@ -12,7 +12,9 @@
 	// Default settings for the inform plugin.
 	var defaults = {
 		ajax: null, // jQuery.ajax options for form submission.
-			// Tip: you quite likely want to set these.
+			// 'type', 'url' and 'data' are automatically set from the form.
+			// You can override the defaults and set anything else you like.
+			// Tip: a value of true enables ajax using the defaults.
 		change: fieldEdited, // function($field, isEdited), called on change. 
 			// Tip: you probably don't want to change this.
 		edit: null, // function($field, isFieldEdited, isFormEdited) 
@@ -297,13 +299,13 @@
     
     // The field has been edited or reverted.
     function fieldEdited($field, isEdited) {
-		var settings = $form.data('inform'),
-			isFormEdited = isFormEdited($(this));
+		var settings = $(this).data('inform'),
+			isFE = isFormEdited($(this));
         //alert('fieldEdited: ' + isEdited);
-    	formEdited(this, isFormEdited); 
+    	formEdited(this, isFE); 
 
     	if (settings.edit && $.isFunction(settings.edit)) 
-        	settings.edit.apply(this, [$field, isEdited, isFormEdited]);		
+        	settings.edit.apply(this, [$field, isEdited, isFE]);		
     }
     
     // Update the form defaults to their current values.
@@ -335,7 +337,7 @@
     	methods.enabled.apply($form, [false]); 
     	formEdited($form, false); 
 
-    	if (settings.ajax) 
+    	if (settings.ajax && settings.ajax !== true) 
     		$.extend(opts, settings.ajax);
     	
     	if (settings.wrapEvents) {

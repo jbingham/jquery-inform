@@ -42,9 +42,9 @@
 
     <script type="text/javascript">
       $(document).ready(function() {
-          $('form').smrtform();
+          $('form').inform({ ajax: true }); // submit using ajax
           $('#name').val('foobar'); // edit the form
-          $('form').smrtform('apply'); // make the updated values the defaults
+          $('form').inform('apply'); // make the updated values the defaults
       });
     </script>
   </body>
