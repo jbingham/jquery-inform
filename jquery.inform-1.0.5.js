@@ -101,7 +101,8 @@
 			} else {
 		        var data = {};
 		        this.find(':input').each(function() {
-		        	data[$(this).attr('name')] = getFormValue($(this));
+		        	if ($(this).attr('name'))
+		        		data[$(this).attr('name')] = getFormValue($(this));
 		        });
 		        return data;				
 			}

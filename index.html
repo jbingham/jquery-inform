@@ -1,7 +1,7 @@
 <html>
   <head>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script> 
-    <script type="text/javascript" src="jquery.inform-1.0.4.js"></script>
+    <script type="text/javascript" src="jquery.inform-1.0.5.js"></script>
   </head>
   <body>
     <h3>jquery.inform example</h3>
@@ -16,13 +16,13 @@
       </div>
       <div>
         <label for="subscribe" >Subscribe</label>
-        <input id="subscribe" name="subscribe" type="checkbox" checked />
+        <input id="subscribe" name="subscribe" type="checkbox" value="true" checked />
       </div>
       <div>
         <label for="radio1" >Radio 1</label>
-        <input id="radio1" name="group" type="radio" />
+        <input id="radio1" name="group" type="radio" value="radio1" />
         <label for="radio2" >Radio 2</label>
-        <input id="radio2" name="group" type="radio" checked />
+        <input id="radio2" name="group" type="radio" value="radio2" checked />
       </div>
       <div>
         <label for="description" >Description</label>
@@ -44,8 +44,13 @@
     <div>
     	<button id="isEdited">Edited?</button>
     	<button id="isEnabled">Enabled?</button>
+    </div>
+    <div>
     	<button id="toggleEdited">Toggle Edit State</button>
     	<button id="toggleEnabled">Toggle Enabled State</button>
+    </div>
+    <div>
+    	<button id="showJson">Show JSON</button>
     </div>
 
     <script type="text/javascript">
@@ -64,6 +69,12 @@
           });
           $('#toggleEnabled').click(function(){
         	  $('form').inform('enabled', !$('form').inform('enabled'));
+          });
+          $('#showJson').click(function() {
+        	  if (JSON)
+        		  alert(JSON.stringify($('form').inform('data')));
+        	  else
+        		  alert('Sorry! Your browser is missing a native JSON serializer. Try using json2.js');
           });
       });
     </script>
