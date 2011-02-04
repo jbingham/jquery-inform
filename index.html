@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script> 
+    <script type="text/javascript" src="jquery.inform-1.0.1.js"></script>
+  </head>
+  <body>
+    <!--
+       Before you can test a smrtform, you'll need to change the form action 
+       to a valid url on your domain. 
+    -->
+    <form method="GET" action="response.html">
+      <div>
+        <label for="name" >Name</label>
+        <input id="name" name="name" type="text" />
+      </div>
+      <div>
+        <label for="subscribe" >Subscribe</label>
+        <input id="subscribe" name="subscribe" type="checkbox" checked />
+      </div>
+      <div>
+        <label for="radio1" >Radio 1</label>
+        <input id="radio1" name="group" type="radio" />
+        <label for="radio2" >Radio 2</label>
+        <input id="radio2" name="group" type="radio" checked />
+      </div>
+      <div>
+        <label for="description" >Description</label>
+        <textarea id="description" name="description"></textarea>
+      </div>
+      <div>
+        <label for="choices">Choices</label>
+        <select id="choices" name="choices">
+          <option value="choice1">Choice1</option>
+          <option value="choice2" selected>Choice2</option>
+        </select>
+      </div>
+      <div>
+        <button type="reset">Reset</button>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $('form').smrtform();
+          $('#name').val('foobar'); // edit the form
+          $('form').smrtform('apply'); // make the updated values the defaults
+      });
+    </script>
+  </body>
+</html>

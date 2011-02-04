@@ -1,0 +1,72 @@
+jQuery inform plugin
+
+Listen for form edits. Enable and disable a form.
+Smartly enable and disable the submit and reset buttons. 
+Load and save the form data with ajax calls.
+
+Rationale: 
+-- It's nice to have Submit and Reset buttons enabled only
+after something has changed
+-- A form may start out empty, then get populated with data 
+from an ajax call. Resetting the form won't work in this case.
+-- The javascript change event doesn't notice if the user has
+edited values back to their defaults.
+-- After saving a form, the current state should become the
+default for the reset button.
+
+Use case: 
+-- Enable/disable the 'Submit' and 'Reset' buttons for 
+a form based on whether the form data has changed since being 
+populated either at creation time or by ajax. Disable the button
+if the user reverts the state to the unedited version.
+E.g., if the user checks and then unchecks a box, the form no longer
+needs submitting. While waiting for the server to process the
+form, block input and disable the buttons. On successful 
+submit, display a dialog (requires jquery-ui) or an alert box.
+On error, display a dialog (requires jquery-ui) or an alert box.
+
+How to use it:
+    $(form).inform(); // Initialize the form.
+
+Optionally set form data (perhaps from an ajax call) and 
+make it the default for the reset button:
+    $(form).inform('data', values).inform('apply'); 
+
+That's it! The submit and reset buttons will be automatically enabled/disabled.
+On submit, the new values will become the defaults and 
+the buttons will be disabled again.
+
+Usage:
+
+Initialize, using the default form edit listener and dialogs.
+  $(form).inform();
+  
+Advanced use with customization:
+  $(form).inform({
+    ajax: {
+      beforeSend: function() {
+        // e.g., validate the form with jquery.validation.js
+      },
+      successMessage: 'Data has been submitted.'
+    }
+  });
+
+Get/set form data from an object whose properties are names in the form:
+  var values = $(form).inform('data');
+  $(form).inform('data', values);
+
+Apply current values as new form defaults, resetting edit state:
+  $(form).inform('apply');
+
+Enable/disable form:
+  $(form).inform('enabled', isEnabled);
+  
+Test if form has been edited:
+  var isEdited = $(form).inform('edited');
+  
+Set defaults for all future calls to initialize a inform:
+  $.fn.inform('defaults', { ...your defaults... });
+
+Destroy and remove listeners:
+  $(form).inform('destroy'); 
+
