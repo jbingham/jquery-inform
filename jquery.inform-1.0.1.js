@@ -351,11 +351,11 @@
 	            	if (s && $.isFunction(s)) {
 	            		s.apply($form, [data]);
 	            	} else if ($.fn.dialog) {
-	            		$('#ui-inform-dialog').remove();
-            			$('body').append('<div id="ui-inform-dialog" title="' 
+	            		$('.ui-inform-dialog').remove();
+            			$('body').append('<div class="ui-inform-dialog" title="' 
             				+ settings.successTitle +'"><p>' 
             				+ getSuccessMessage($form, data) + '</p></div>');
-	            		$('#ui-inform-dialog').dialog();
+	            		$('.ui-inform-dialog').dialog();
 	            	} else {
 	            		alert(getSuccessMessage($form, data));
 	            	}
@@ -367,12 +367,12 @@
 	            	if (e && $.isFunction(e)) {
 	            		e.apply($form, [xhr, status, err]);
 	            	} else if ($.fn.dialog) {
-	            		$('#smrtform_dialog').remove();
-            			$('body').append('<div id="ui-inform-dialog" title="' 
+	            		$('.ui-inform-dialog').remove();
+            			$('body').append('<div class="ui-inform-dialog" title="' 
             				+ settings.errorTitle +'"><p>' 
             				+ getErrorMessage($form, xhr, status, err) 
             				+'</p></div>');
-	            		$('#ui-inform-dialog').dialog();
+	            		$('.ui-inform-dialog').dialog();
 	            	} else {
 	            		alert(getErrorMessage($form, xhr, status, err));
 	            	}
