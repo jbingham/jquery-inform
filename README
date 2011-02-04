@@ -1,147 +1,91 @@
-<html>
-<head>
-<title>jQuery inform plugin</title>
-<head>
-<body>
-<p>Listen for form edits. Enable and disable a form.
+Listen for form edits. Enable and disable a form.
 Smartly enable and disable the submit and reset buttons. 
-Load and save the form data with ajax calls.</p>
+Load and save the form data with ajax calls.
 
-<h3>RATIONALE<h3>
+RATIONALE
  
-<ul>
-<li>It's nice to have Submit and Reset buttons enabled only
-after something has changed</li>
-<li>A form may start out empty, then get populated with data 
-from an ajax call. Resetting the form won't work in this case.</li>
-<li>The javascript change event doesn't notice if the user has
-edited values back to their defaults.</li>
-<li>After saving a form, the current state should become the
-default for the reset button.</li>
-<li>Sometimes you want to know if a form has been edited.</li>
-<li>It's nice to be able to disable a form to show data without allowing editing</li>
-</ul>
+* It's nice to have Submit and Reset buttons enabled only
+after something has changed
+* A form may start out empty, then get populated with data 
+from an ajax call. Resetting the form won't work in this case.
+* The javascript change event doesn't notice if the user has
+edited values back to their defaults.
+* After saving a form, the current state should become the
+default for the reset button.
+* Sometimes you want to know if a form has been edited.
+* It's nice to be able to disable a form to show data without allowing editing
 
-<h3>SAMPLE USE CASE</h3>
- 
-<p>
+SAMPLE USE CASE
+
 Enable/disable the 'Submit' and 'Reset' buttons for 
 a form based on whether the form data has changed since being 
 populated either at creation time or by ajax. 
 While waiting for the server to process the submitted
 form, block input and disable the buttons. On successful 
-submit, display a dialog (requires jquery-ui) or an alert box.
-On error, display a dialog (requires jquery-ui) or an alert box.
+submit, display a dialog (requires jquery-) or an alert box.
+On error, display a dialog (requires jquery-) or an alert box.
 Disable the buttons after successful submission. Make the
 Reset button work sensibly after saving the form, 
 resetting to the newly saved values. 
-</p>
 
-<h3>BASICS</h3>
+BASICS
 
-<p>How to use it:
-<code>
+How to use it:
     $(form).inform(); // Initialize the form.
-</code>
-</p>
 
-<p>
 Optionally set form data (perhaps from an ajax call) and 
 make it the default for the reset button:
-<code>
     $(form).inform('data', values).inform('apply'); 
-</code>
-</p>
 
-<p>
 That's it! The submit and reset buttons will be automatically enabled/disabled.
 On submit, the new values will become the defaults and 
 the buttons will be disabled again.
-</p>
 
-<h3>USAGE EXAMPLES</h3>
+USAGE EXAMPLES
 
-<p>
 Initialize, using the default form edit listener and dialogs.
-<code>
   $(form).inform();
-</code>
-</p>
 
-<p>
 Initialize using ajax submission:
-<code>
   $(form).inform({ ajax: true });
-</code>
-</p>
 
-<p>
 Advanced use with customization:
-<code>
   $(form).inform({
     ajax: {
       beforeSend: function() {
-        // e.g., validate the form with jquery.validation.js
+        // .g., validate the form with jquery.validation.js
       }
     },
     successMessage: 'Data has been submitted.'
   });
-</code>
-</p>
 
-<p>
 Get/set form data from an object whose properties are names in the form:
-<code>
   var values = $(form).inform('data');
   $(form).inform('data', values);
-</code>
-</p>
 
-<p>
 Apply current values as new form defaults, resetting edit state:
-<code>
   $(form).inform('apply');
-</code>
-</p>
 
-<p>
 Enable/disable form:
-<code>
   $(form).inform('enabled', isEnabled);
   var isEnabled = $(form).inform('enabled');
-</code>
-</p>
 
-<p>
 Test if form has been edited:
-<code>
   var isEdited = $(form).inform('edited');
   $(form).inform('edited', isEdited); // override
-</code>
-</p>
 
-<p>
 Set defaults for all future calls to initialize a inform:
-<code>
   $.fn.inform('defaults', { ...your defaults... });
-</code>
-</p>
 
-<p>
 Destroy and remove listeners:
-<code>
   $(form).inform('destroy'); 
-</code>
-</p>
 
-<h3>CSS STYLING</h3>
+
+CSS STYLING
  
-<ul>
-<li>If you're using jqueryui, javascript alerts will be replaced with jqueryui dialogs.</li>
-<li>Dialogs have the css class 'ui-inform-dialog'.</li>
-<li>When form fields are disabled, they have the css classes
-  'ui-state-disabled' and 'ui-inform-readonly' added.</li>
-<li>You can keep form fields permanently locked by adding the css class 'ui-inform-locked'</li>
-</ul>
-</body>
-</html>
+* If you're using jqueryui, javascript alerts will be replaced with jqueryui dialogs.
+* Dialogs have the css class '-inform-dialog'.
+* When form fields are disabled, they have the css classes
+  '-state-disabled' and '-inform-readonly' added.
+* You can keep form fields permanently locked by adding the css class '-inform-locked'
+
