@@ -1,7 +1,7 @@
 <html>
   <head>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script> 
-    <script type="text/javascript" src="jquery.inform-1.0.1.js"></script>
+    <script type="text/javascript" src="jquery.inform-1.0.3.js"></script>
   </head>
   <body>
     <h3>jquery.inform example</h3>
@@ -40,12 +40,31 @@
         <button type="submit">Submit</button>
       </div>
     </form>
+    
+    <div>
+    	<button id="isEdited">Edited?</button>
+    	<button id="isEnabled">Enabled?</button>
+    	<button id="toggleEdited">Toggle Edit State</button>
+    	<button id="toggleEnabled">Toggle Enabled State</button>
+    </div>
 
     <script type="text/javascript">
       $(document).ready(function() {
           $('form').inform({ ajax: true }); // submit using ajax
           $('#name').val('foobar'); // edit the form
           $('form').inform('apply'); // make the updated values the defaults
+          $('#isEdited').click(function(){
+        	  alert($('form').inform('edited'));
+          });
+          $('#isEnabled').click(function(){
+        	  alert($('form').inform('enabled'));
+          });
+          $('#toggleEdited').click(function(){
+        	  $('form').inform('edited', !$('form').inform('edited'));
+          });
+          $('#toggleEnabled').click(function(){
+        	  $('form').inform('enabled', !$('form').inform('enabled'));
+          });
       });
     </script>
   </body>

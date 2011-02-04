@@ -69,9 +69,11 @@ Apply current values as new form defaults, resetting edit state:
 
 Enable/disable form:
   $(form).inform('enabled', isEnabled);
+  var isEnabled = $(form).inform('enabled');
   
 Test if form has been edited:
   var isEdited = $(form).inform('edited');
+  $(form).inform('edited', isEdited); // override
   
 Set defaults for all future calls to initialize a inform:
   $.fn.inform('defaults', { ...your defaults... });
