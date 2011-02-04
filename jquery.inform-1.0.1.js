@@ -196,12 +196,12 @@
 	    	            	if (e && $.isFunction(e)) {
 	    	            		e.apply($form, [xhr, status, err]);
 	    	            	} else if ($.dialog) {
-	    	            		$('#smrtform_dialog').remove();
-    	            			$('body').append('<div id="smrtform_dialog" title="' 
+	    	            		$('.ui-inform-dialog').remove();
+    	            			$('body').append('<div class="ui-inform-dialog" title="' 
     	            				+ settings.errorTitle +'"><p>' 
     	            				+ getErrorMessage($form, xhr, status, err) 
     	            				+'</p></div>');
-	    	            		$('#smrtform_dialog').dialog();
+	    	            		$('.ui-inform-dialog').dialog();
 	    	            	} else {
 	    	            		alert(getErrorMessage($form, xhr, status, err));
 	    	            	}
